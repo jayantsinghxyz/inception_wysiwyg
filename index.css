@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    background-color: #f9f9f9;
+    padding: 16px 80px;
+}
+
+#wysiwygEditor {
+    border-radius: 10px;
+    background-color: #fff;
+    border: 1px solid #e9e9e9;
+    outline: none;
+}
+
+ul#__wysiwyg_actions_block_level,
+ul#__wysiwyg_actions_selection_level {
+    list-style: none;
+    padding: 16px;
+    margin: 0;
+}
+
+ul#__wysiwyg_actions_selection_level {
+    display: none;
+}
+
+#__wysiwyg_editable_area {
+    padding: 16px;
+    width: 100%;
+    min-height: 500px;
+    border-top: 1px solid #e9e9e9;
+    outline: none;
+}
