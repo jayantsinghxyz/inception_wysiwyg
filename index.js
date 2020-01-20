@@ -26,18 +26,16 @@ function WYSIWYG({ editorId }) {
 
 
     function insertImage() {
-        console.log('Insert image clicked');
-        const selection = document.getSelection();
-        console.log(selection);
-        console.log(selection.anchorNode)
-        console.log(selection.focusNode)
+        document.execCommand('insertImage', false, "https://jayantsingh.in/static/img/home/me.jpg");
+        const currentSelection = document.getSelection();
+        console.log(currentSelection);
+        currentSelection.anchorNode.parentElement.alternate = "Jayant Image";
     }
 
 
     function createLink({openInNewTab=true, }) {
         document.execCommand('createLink', false, 'https://jayantsingh.in');
         const currentSelection = document.getSelection();
-        console.log(currentSelection);
         currentSelection.anchorNode.parentElement.target = "_blank";
         currentSelection.anchorNode.parentElement.rel = "noopener noreferrer";
     }
@@ -71,12 +69,16 @@ function WYSIWYG({ editorId }) {
 
 
     function onSelectionChange() {
-        if (document.getSelection().toString().length > 0) {
-            editorActionsBlockLevel.style.display = 'none';
-            editorActionsSelectionLevel.style.display = 'block';
-        } else {
-            editorActionsBlockLevel.style.display = 'block';
-            editorActionsSelectionLevel.style.display = 'none';
+        const currentSelection = document.getSelection();
+
+        if (currentSelection.type === "Range") {
+            if (currentSelection.toString().length > 0) {
+                editorActionsBlockLevel.style.display = 'none';
+                editorActionsSelectionLevel.style.display = 'block';
+            } else {
+                editorActionsBlockLevel.style.display = 'block';
+                editorActionsSelectionLevel.style.display = 'none';
+            }
         }
     }
 
@@ -145,6 +147,10 @@ function WYSIWYG({ editorId }) {
 const wysiwyg = WYSIWYG({
     editorId: "wysiwygEditor"
 })
+
+console.log(wysiwyg)
+
+// wysiwyg.insertImage()
 
 
 // blockquote - code - ordered list - unordered list
